@@ -1,4 +1,3 @@
-import { threads } from "wasm-feature-detect";
 import * as Comlink from "comlink";
 
 function wrapExports({ sum }) {
