@@ -2,6 +2,6 @@
 
 `npm run build`
 
-# Serve
+# serve
 
 `npx statikk --port 8000 --coi`
