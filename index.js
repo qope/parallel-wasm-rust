@@ -10,10 +10,11 @@ const result = document.getElementById("result");
     })
   ).handler;
 
-  Object.assign(document.getElementById("multiThread"), {
+  Object.assign(document.getElementById("calc"), {
     async onclick() {
       let { res, time } = await handler();
-      console.log(res, time);
+      console.log(time);
+      result.textContent = "ans:" + res + ", elapsed:" + time;
     },
     disabled: false,
   });
