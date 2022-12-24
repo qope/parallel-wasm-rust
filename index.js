@@ -2,17 +2,13 @@ import * as Comlink from "comlink";
 
 const result = document.getElementById("result");
 
-(async function init() {
+(async () => {
   // Create a separate thread from wasm-worker.js and get a proxy to its handlers.
-  let handlers = await Comlink.wrap(
+  let handler = await Comlink.wrap(
     new Worker(new URL("./wasm-worker.js", import.meta.url), {
       type: "module",
     })
-  ).handlers;
-
-  // Handlers are named in the same way as buttons.
-  let handler = handlers["multiThread"];
-  // If handler doesn't exist, it's not supported.
+  ).handler;
 
   Object.assign(document.getElementById("multiThread"), {
     async onclick() {

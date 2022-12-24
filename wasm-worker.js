@@ -14,21 +14,10 @@ function wrapExports({ sum }) {
 }
 
 async function initHandlers() {
-  const multiThread = await (async () => {
-    if (!(await threads())) return;
-    const multiThread = await import("./pkg/plane_wasm.js");
-    await multiThread.default();
-    await multiThread.initThreadPool(navigator.hardwareConcurrency);
-    return wrapExports(multiThread);
-  })();
-
-  // console.log(multiThread);
-
-  return Comlink.proxy({
-    multiThread,
-  });
+  const multiThread = await import("./pkg/plane_wasm.js");
+  await multiThread.default();
+  await multiThread.initThreadPool(navigator.hardwareConcurrency);
+  return Comlink.proxy(wrapExports(multiThread));
 }
 
-Comlink.expose({
-  handlers: initHandlers(),
-});
+Comlink.expose({ handler: initHandlers() });

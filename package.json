@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:wasm": "wasm-pack build --target web",
-    "build": "rm ./dist/* && npm run build:wasm && webpack build ./index.js --mode production -o dist --output-filename index.js && cp index.html dist/"
+    "build": "rm -r ./dist && npm run build:wasm && webpack build ./index.js --mode production -o dist --output-filename index.js && cp index.html dist/"
   },
   "keywords": [],
   "author": "",
